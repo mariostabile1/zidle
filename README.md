@@ -51,7 +51,7 @@ zinit light mariostabile1/zidle
 
 *(Zidle will automatically create its default configuration in `~/.config/zidle` the very first time it starts!)*
 
-## ⚙️ Configuration
+## Configuration
 
 The installer places your configuration at `~/.config/zidle/config.json`. 
 
