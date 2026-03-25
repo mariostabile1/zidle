@@ -1,10 +1,10 @@
-# Zidle 💤
+# Zidle
 
 A multi-scene, Zsh-native terminal screensaver that triggers after a period of shell inactivity. It exits completely invisibly and cleanly restores your shell context (down to any in-progress typing buffers) upon any keypress.
 
 ---
 
-## 🌟 Features
+## Features
 
 *   **Zsh Native**: Leverages `TMOUT` directly down inside Zsh. Only starts when you haven't typed natively into your shell interpreter. Doesn't interrupt active processes like vim or tail.
 *   **Modular Scenes**: Cycle natively over built-in Python logic loops. Readily expand functionality.
@@ -12,7 +12,7 @@ A multi-scene, Zsh-native terminal screensaver that triggers after a period of s
 *   **Zero Dependencies**: Relies explicitly over the standard `sys/os` Python headers + `curses`. No need for generic system `pip` pollution.
 *   **Cross-platform**: Written to resolve nicely on Linux and macOS natively.
 
-## 🎬 Built-in Scenes
+## Built-in Scenes
 
 It comes natively embedded to bounce rapidly on:
 
@@ -22,7 +22,7 @@ It comes natively embedded to bounce rapidly on:
 
 *(You can configure if these should process systematically or randomly entirely under your user ~/.config variables).*
 
-## 🚀 Installation
+## Installation
 
 1. Get the local repository:
    ```bash
@@ -68,7 +68,7 @@ The installer places your configuration at `~/.config/zidle/config.json`.
 *   **scenes**: Array list validating logic block rendering scenes explicitly. Only strings available map to execution.
 *   **random_scene**: If statically false it will just pull the priority element (position 1 element).
 
-## 💻 Manual Override Checks
+## Manual Override Checks
 
 You can push it forward manually when wanting to override normal wait contexts:
 
@@ -78,13 +78,13 @@ zidle stop
 zidle reload 
 ```
 
-## 🎨 Customizing
+## Customizing
 
 Zidle is designed to be easily modified. Out of the box, it supports modifying timeouts and enabled scenes.
 
 If you want to edit how a scene looks (e.g., change the clock color), simply open `scenes/clock.py` and modify the `curses.color_pair(2)` argument.
 
-## 🧩 Adding a Custom Scene
+## Adding a Custom Scene
 
 To create a new scene, add a `<your-scene>.py` to the `scenes/` folder following this template:
 
@@ -112,7 +112,7 @@ class Scene:
 
 After creating your file, simply add your file name (without `.py`) to your `config.json`'s `scenes` list!
 
-## ⚠️ Notes on Terminal Usage
+## Notes on Terminal Usage
 
 * **Interactive Applications**: `TMOUT` in Zsh only triggers when sitting at the `PS1` command prompt. It **will not** trigger and interrupt you if you are inside `vim`, `nano`, `less`, `htop`, or while a long-running compile command is executing.
 * **Safe Exits**: Exiting Zidle by pressing a key does not leak that keystroke into your shell. It simply redraws your prompt and any command you had partially typed out.
