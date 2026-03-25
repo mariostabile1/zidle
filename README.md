@@ -26,7 +26,7 @@ It comes natively embedded to bounce rapidly on:
 
 1. Get the local repository:
    ```bash
-   git clone https://github.com/your-url/zidle.git
+   git clone https://github.com/mariostabile1/zidle.git
    cd zidle
    ```
 
@@ -46,7 +46,7 @@ It comes natively embedded to bounce rapidly on:
 If you use [Zinit](https://github.com/zdharma-continuum/zinit), you can easily install and configure Zidle directly without manually cloning or running `install.sh`. Add this snippet to your `~/.zshrc`:
 
 ```zsh
-zinit light your-github-username/zidle
+zinit light mariostabile1/zidle
 ```
 
 *(Zidle will automatically create its default configuration in `~/.config/zidle` the very first time it starts!)*
