@@ -116,3 +116,7 @@ After creating your file, simply add your file name (without `.py`) to your `con
 
 * **Interactive Applications**: `TMOUT` in Zsh only triggers when sitting at the `PS1` command prompt. It **will not** trigger and interrupt you if you are inside `vim`, `nano`, `less`, `htop`, or while a long-running compile command is executing.
 * **Safe Exits**: Exiting Zidle by pressing a key does not leak that keystroke into your shell. It simply redraws your prompt and any command you had partially typed out.
+
+## Contributing
+
+Every contribution is welcome! Please read the [Contributing Guidelines](CONTRIBUTING.md) for details on how to set up the project locally and submit Pull Requests. **Note: All Pull Requests must target the `dev` branch.**
