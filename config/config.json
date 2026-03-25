@@ -1,0 +1,10 @@
+{
+  "timeout": 60,
+  "scenes": [
+    "matrix",
+    "clock",
+    "stats"
+  ],
+  "theme": "default",
+  "random_scene": true
+}
