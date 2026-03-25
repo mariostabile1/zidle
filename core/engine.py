@@ -13,7 +13,10 @@ def run(scene_class):
         pass
 
 def _loop(stdscr, scene_class):
-    curses.curs_set(0) # Hide cursor
+    try:
+        curses.curs_set(0) # Hide cursor
+    except curses.error:
+        pass
     stdscr.nodelay(1)  # Non-blocking getch
     stdscr.timeout(0)
     stdscr.leaveok(True)

@@ -17,7 +17,7 @@ class Scene:
         while len(self.drops) < max_x // 3:
             x = random.randint(0, max_x - 1)
             y = random.randint(-max_y, 0)
-            length = random.randint(5, max_y - 2)
+            length = random.randint(5, max(5, max_y - 2))
             speed = random.randint(1, 2)
             self.drops.append({"x": x, "y": y, "len": length, "speed": speed})
 

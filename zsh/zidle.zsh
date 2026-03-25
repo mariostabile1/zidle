@@ -1,10 +1,17 @@
 # Zidle - Zsh Terminal Screensaver
+export ZIDLE_DIR="${ZIDLE_DIR:-${${(%):-%x}:A:h:h}}"
+
+# Auto-initialize config folder for Zinit zero-config installs
+if [[ ! -f "$HOME/.config/zidle/config.json" ]]; then
+    mkdir -p "$HOME/.config/zidle"
+    cp "$ZIDLE_DIR/config/config.json" "$HOME/.config/zidle/config.json" 2>/dev/null || true
+fi
 
 __zidle_load_timeout() {
     local config_file="$HOME/.config/zidle/config.json"
     if [[ -f "$config_file" ]]; then
         # Safely extract timeout via simple regex extraction
-        local timeout_val=$(grep -Eo '"timeout":\s*[0-9]+' "$config_file" | grep -Eo '[0-9]+')
+        local timeout_val=$(grep -Eo '"timeout":\s*[0-9]+' "$config_file" | grep -Eo '[0-9]+' | head -n 1)
         if [[ -n "$timeout_val" ]]; then
             if [[ "$timeout_val" -eq 0 ]]; then
                 unset TMOUT
@@ -31,8 +38,8 @@ function TRAPALRM() {
     __zidle_load_timeout
     
     # Force a redraw of the prompt so the terminal restores instantly
-    if zle; then
-        zle reset-prompt
+    if zle >/dev/null 2>&1; then
+        zle reset-prompt 2>/dev/null || true
     fi
     return 0
 }

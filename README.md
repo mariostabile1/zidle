@@ -41,6 +41,16 @@ It comes natively embedded to bounce rapidly on:
    source ~/.zshrc
    ```
 
+### Alternative: Using Zinit Plugin Manager
+
+If you use [Zinit](https://github.com/zdharma-continuum/zinit), you can easily install and configure Zidle directly without manually cloning or running `install.sh`. Add this snippet to your `~/.zshrc`:
+
+```zsh
+zinit light your-github-username/zidle
+```
+
+*(Zidle will automatically create its default configuration in `~/.config/zidle` the very first time it starts!)*
+
 ## ⚙️ Configuration
 
 The installer places your configuration at `~/.config/zidle/config.json`. 
