@@ -19,6 +19,9 @@ It comes natively embedded to bounce rapidly on:
 1.  **Matrix Rain** `matrix`
 2.  **Digital Block Clock** `clock`
 3.  **System Stats** `stats`
+4.  **3D Starfield Warp** `starfield`
+5.  **Bouncing DVD Logo** `bouncing`
+6.  **Conway's Game of Life** `life`
 
 *(You can configure if these should process systematically or randomly entirely under your user ~/.config variables).*
 
@@ -58,7 +61,14 @@ The installer places your configuration at `~/.config/zidle/config.json`.
 ```json
 {
   "timeout": 60,
-  "scenes": ["matrix", "clock", "stats"],
+  "scenes": [
+    "matrix",
+    "clock",
+    "stats",
+    "starfield",
+    "bouncing",
+    "life"
+  ],
   "theme": "default",
   "random_scene": true
 }
@@ -86,7 +96,14 @@ If you want to edit how a scene looks (e.g., change the clock color), simply ope
 
 ## Adding a Custom Scene
 
-To create a new scene, add a `<your-scene>.py` to the `scenes/` folder following this template:
+Zidle safely supports loading your own personal scenes without modifying the repository source code (which is crucial if you installed via a plugin manager like Zinit, as internal folders are overwritten during updates).
+
+To create a new scene, simply make a custom `scenes/` folder inside your configuration directory:
+```bash
+mkdir -p ~/.config/zidle/scenes
+```
+
+Then, drop a `<your-scene>.py` file into that folder following this template:
 
 ```python
 class Scene:
@@ -110,7 +127,7 @@ class Scene:
             pass
 ```
 
-After creating your file, simply add your file name (without `.py`) to your `config.json`'s `scenes` list!
+After creating your file, simply add your file name (without `.py`) to your `config.json`'s `scenes` list! Zidle will automatically merge and load scripts from both the core repository and your personal `~/.config/zidle/scenes` folder.
 
 ## Notes on Terminal Usage
 

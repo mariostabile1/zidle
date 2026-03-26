@@ -3,7 +3,10 @@
   "scenes": [
     "matrix",
     "clock",
-    "stats"
+    "stats",
+    "starfield",
+    "bouncing",
+    "life"
   ],
   "theme": "default",
   "random_scene": true
