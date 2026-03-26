@@ -45,16 +45,16 @@ def load_scenes(zidle_dir):
     for s_dir in dirs_to_check:
         for file in glob.glob(os.path.join(s_dir, '*.py')):
             name = os.path.basename(file)[:-3]
-        if name == '__init__':
-            continue
-        try:
-            spec = importlib.util.spec_from_file_location(name, file)
-            mod = importlib.util.module_from_spec(spec)
-            spec.loader.exec_module(mod)
-            if hasattr(mod, 'Scene'):
-                scenes[name] = mod.Scene
-        except Exception:
-            pass
+            if name == '__init__':
+                continue
+            try:
+                spec = importlib.util.spec_from_file_location(name, file)
+                mod = importlib.util.module_from_spec(spec)
+                spec.loader.exec_module(mod)
+                if hasattr(mod, 'Scene'):
+                    scenes[name] = mod.Scene
+            except Exception:
+                pass
     return scenes
 
 def main():
