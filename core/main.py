@@ -13,7 +13,14 @@ def load_config():
     config_path = os.path.expanduser('~/.config/zidle/config.json')
     defaults = {
         "timeout": 60,
-        "scenes": ["matrix", "clock", "stats"],
+        "scenes": [
+            "matrix", 
+            "clock", 
+            "stats", 
+            "starfield", 
+            "bouncing", 
+            "life"
+        ],
         "theme": "default",
         "random_scene": True
     }
@@ -26,11 +33,18 @@ def load_config():
     return defaults
 
 def load_scenes(zidle_dir):
-    scenes_dir = os.path.join(zidle_dir, 'scenes')
     scenes = {}
     
-    for file in glob.glob(os.path.join(scenes_dir, '*.py')):
-        name = os.path.basename(file)[:-3]
+    built_in_scenes = os.path.join(zidle_dir, 'scenes')
+    user_scenes = os.path.expanduser('~/.config/zidle/scenes')
+    
+    dirs_to_check = [built_in_scenes]
+    if os.path.exists(user_scenes):
+        dirs_to_check.append(user_scenes)
+        
+    for s_dir in dirs_to_check:
+        for file in glob.glob(os.path.join(s_dir, '*.py')):
+            name = os.path.basename(file)[:-3]
         if name == '__init__':
             continue
         try:
