@@ -54,6 +54,20 @@ zinit light mariostabile1/zidle
 
 *(Zidle will automatically create its default configuration in `~/.config/zidle` the very first time it starts!)*
 
+### Alternative: Arch Linux (AUR)
+
+If you are on Arch Linux or Arch-based distros, you can natively install `zidle-git` package using your favorite AUR helper:
+
+```bash
+paru -S zidle-git
+```
+
+or
+
+```bash
+yay -S zidle-git
+```
+
 ## Configuration
 
 The installer places your configuration at `~/.config/zidle/config.json`. 
