@@ -20,6 +20,13 @@ ENV/
 ehthumbs.db
 Thumbs.db
 
+# Arch Linux AUR
+aur/
+pkg/
+src/
+*.pkg.tar.zst
+*.log
+
 # IDEs
 .idea/
 .vscode/
