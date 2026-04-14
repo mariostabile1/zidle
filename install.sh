@@ -19,6 +19,9 @@ fi
 echo "3. Adding Zsh integration..."
 ZSHRC="$HOME/.zshrc"
 
+# Ensure ~/.zshrc exists before grep when running with set -e
+touch "$ZSHRC"
+
 if grep -q "ZIDLE_DIR" "$ZSHRC"; then
     echo "Zidle is already installed in $ZSHRC."
 else

@@ -3,6 +3,12 @@ import os
 import subprocess
 import time
 
+
+def _warn(msg):
+    if os.environ.get("ZIDLE_DEBUG") == "1":
+        print(f"[zidle] {msg}")
+
+
 class Scene:
     def __init__(self, stdscr):
         self.cpu = "0%"
@@ -26,9 +32,10 @@ class Scene:
                     minutes = int((up_seconds % 3600) // 60)
                     self.uptime = f"{hours}h {minutes}m"
             else:
-                out = subprocess.check_output("uptime", shell=True).decode()
+                out = subprocess.check_output(["uptime"]).decode()
                 self.uptime = out.split("up ")[1].split(",")[0].strip()
-        except:
+        except Exception as exc:
+            _warn(f"failed to read uptime: {exc}")
             self.uptime = "N/A"
 
         try:
@@ -43,7 +50,8 @@ class Scene:
                 self.ram = f"{((total - free) / total * 100):.1f}%"
             else:
                 self.ram = "N/A (No /proc)"
-        except:
+        except Exception as exc:
+            _warn(f"failed to read memory stats: {exc}")
             self.ram = "N/A"
 
         try:
@@ -52,9 +60,10 @@ class Scene:
                     load = f.readline().split()[0]
                     self.cpu = f"{load} (load sys)"
             else:
-                out = subprocess.check_output("uptime", shell=True).decode()
+                out = subprocess.check_output(["uptime"]).decode()
                 self.cpu = out.split("load averages: ")[-1].strip() if "load averages:" in out else "N/A"
-        except:
+        except Exception as exc:
+            _warn(f"failed to read cpu load: {exc}")
             self.cpu = "N/A"
 
     def update(self, max_y, max_x):
