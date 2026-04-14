@@ -10,8 +10,19 @@ fi
 __zidle_load_timeout() {
     local config_file="$HOME/.config/zidle/config.json"
     if [[ -f "$config_file" ]]; then
-        # Safely extract timeout via simple regex extraction
-        local timeout_val=$(grep -Eo '"timeout":\s*[0-9]+' "$config_file" | grep -Eo '[0-9]+' | head -n 1)
+        # Parse JSON with python instead of regex for better reliability
+        local timeout_val
+        timeout_val=$(python3 -c '
+import json, sys
+try:
+    with open(sys.argv[1], "r", encoding="utf-8") as f:
+        data = json.load(f)
+    timeout = data.get("timeout", 60)
+    timeout = int(timeout)
+    print(timeout if timeout >= 0 else 60)
+except Exception:
+    print(60)
+' "$config_file" 2>/dev/null)
         if [[ -n "$timeout_val" ]]; then
             if [[ "$timeout_val" -eq 0 ]]; then
                 unset TMOUT

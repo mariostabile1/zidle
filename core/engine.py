@@ -1,6 +1,15 @@
 import curses
 import time
 import sys
+import os
+
+
+def _warn(msg):
+    if sys and getattr(sys, "stderr", None):
+        # Only print debug diagnostics when explicitly requested
+        if os.environ.get("ZIDLE_DEBUG") == "1":
+            print(f"[zidle] {msg}", file=sys.stderr)
+
 
 def run(scene_class):
     try:
@@ -8,9 +17,9 @@ def run(scene_class):
         curses.wrapper(lambda stdscr: _loop(stdscr, scene_class))
     except (KeyboardInterrupt, SystemExit):
         pass
-    except Exception:
+    except Exception as exc:
         # Graceful fallback, ensure terminal settings are restored
-        pass
+        _warn(f"engine runtime error: {exc}")
 
 def _loop(stdscr, scene_class):
     try:

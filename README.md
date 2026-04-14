@@ -94,7 +94,6 @@ The installer places your configuration at `~/.config/zidle/config.json`.
     "bouncing",
     "life"
   ],
-  "theme": "default",
   "random_scene": true
 }
 ```
@@ -102,6 +101,7 @@ The installer places your configuration at `~/.config/zidle/config.json`.
 *   **timeout**: Idle time in seconds prior triggering validation
 *   **scenes**: Array list validating logic block rendering scenes explicitly. Only strings available map to execution.
 *   **random_scene**: If statically false it will just pull the priority element (position 1 element).
+*   **Debug mode**: Set `ZIDLE_DEBUG=1` before starting Zidle to print non-fatal diagnostics to help troubleshoot scene/config/runtime issues.
 
 ## Manual Override Checks
 

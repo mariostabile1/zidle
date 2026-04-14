@@ -9,6 +9,11 @@ import importlib.util
 # Add core dir to path to import engine
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
+
+def _warn(msg):
+    if os.environ.get("ZIDLE_DEBUG") == "1":
+        print(f"[zidle] {msg}", file=sys.stderr)
+
 def load_config():
     config_path = os.path.expanduser('~/.config/zidle/config.json')
     defaults = {
@@ -21,15 +26,14 @@ def load_config():
             "bouncing", 
             "life"
         ],
-        "theme": "default",
         "random_scene": True
     }
     if os.path.exists(config_path):
         try:
             with open(config_path, 'r') as f:
                 defaults.update(json.load(f))
-        except Exception:
-            pass
+        except Exception as exc:
+            _warn(f"failed to read config '{config_path}': {exc}")
     return defaults
 
 def load_scenes(zidle_dir):
@@ -49,12 +53,17 @@ def load_scenes(zidle_dir):
                 continue
             try:
                 spec = importlib.util.spec_from_file_location(name, file)
+                if not spec or not spec.loader:
+                    _warn(f"invalid scene spec: {file}")
+                    continue
                 mod = importlib.util.module_from_spec(spec)
                 spec.loader.exec_module(mod)
                 if hasattr(mod, 'Scene'):
                     scenes[name] = mod.Scene
-            except Exception:
-                pass
+                else:
+                    _warn(f"scene module without Scene class: {file}")
+            except Exception as exc:
+                _warn(f"failed to load scene '{file}': {exc}")
     return scenes
 
 def main():
