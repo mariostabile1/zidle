@@ -29,11 +29,11 @@ It comes natively embedded to bounce rapidly on:
 
 | Scene | Preview |
 |-------|---------|
-| **Matrix Rain** | ![Matrix Rain](assets/readme-scenes-preview/matrix-rain.gif) |
-| **Digital Block Clock** | ![Clock](assets/readme-scenes-preview/clock.gif) |
-| **System Stats** | ![PC Stats](assets/readme-scenes-preview/pc-stats.gif) |
-| **Bouncing DVD Logo** | ![DVD Bounce](assets/readme-scenes-preview/dvd-bounce.gif) |
-| **Conway's Game of Life** | ![Game of Life](assets/readme-scenes-preview/game-of-life.gif) |
+| **Matrix Rain** | ![Matrix Rain](./assets/readme-scenes-preview/matrix-rain.gif) |
+| **Digital Block Clock** | ![Clock](./assets/readme-scenes-preview/clock.gif) |
+| **System Stats** | ![PC Stats](./assets/readme-scenes-preview/pc-stats.gif) |
+| **Bouncing DVD Logo** | ![DVD Bounce](./assets/readme-scenes-preview/dvd-bounce.gif) |
+| **Conway's Game of Life** | ![Game of Life](./assets/readme-scenes-preview/game-of-life.gif) |
 
 ## Installation
 
